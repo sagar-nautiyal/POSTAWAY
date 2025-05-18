@@ -1,0 +1,446 @@
+{
+    "openapi": "3.0.4",
+    "info":{
+        "version":"1.0.0",
+        "description":"API Documentation for POSTAWAY application",
+        "title":"POSTAWAY"
+    },
+    "servers":[
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "components":{
+        "securitySchemes":{
+            "JWT":{
+                "in":"header",
+                "name":"Authorization",
+                "type":"apiKey"
+            }
+        }
+    },
+    "paths":{
+        "/api/post/all":{
+           "get":{
+                "summary":"Retreive All Posts",
+                "description":"This will get you all the posts",
+                "tags":["Posts"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           } 
+        },
+        "/api/post/{id}":{
+           "get":{
+                "summary":"Retreive Specific Post",
+                "description":"Retreive Specific Post By ID",
+                "tags":["Posts"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           },
+           "put":{"summary":"Update Specific Post",
+                "description":"update Specific Post By ID",
+                "tags":["Posts"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to update"
+                }],
+                "requestBody":{
+                    "content":
+                    {
+                        "multipart/form-data":{
+                            "schema":
+                            {
+                                "type":"object",
+                                "properties":{
+                                    "caption":{
+                                        "type":"string"
+                                    },
+                                    "imageUrl":{
+                                        "type": "string",
+                                        "format":"binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           },
+           "delete":{"summary":"Delete Specific Post",
+                "description":"Delete Specific Post By ID",
+                "tags":["Posts"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to delete"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           } 
+        },
+        "/api/post":{
+           "get":{
+                "summary":"Retreive Posts",
+                "description":"Retreive Posts for specific User",
+                "tags":["Posts"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           },
+           "post":{
+                "summary":"Create New Post",
+                "description":"Create a new post",
+                "tags":["Posts"],
+                "requestBody":{
+                    "content":
+                    {
+                        "multipart/form-data":{
+                            "schema":
+                            {
+                                "type":"object",
+                                "properties":{
+                                    "caption":{
+                                        "type":"string"
+                                    },
+                                    "imageUrl":{
+                                        "type": "string",
+                                        "format":"binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/api/comments/{id}":{
+           "get":{
+                "summary":"Retreive Comments",
+                "description":"Retreive All Comments for a specific ID",
+                "tags":["Comments"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           },
+           "post":{
+                "summary":"Add Comments",
+                "description":"Add Comments for a specific post",
+                "tags":["Comments"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "requestBody":{
+                    "content":
+                    {
+                        "application/json":{
+                            "schema":
+                            {
+                                "type":"object",
+                                "properties":{
+                                    "content":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           },
+           "put":{
+                "summary":"Update Comments",
+                "description":"Update Comments for a specific post",
+                "tags":["Comments"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "requestBody":{
+                    "content":
+                    {
+                        "application/json":{
+                            "schema":
+                            {
+                                "type":"object",
+                                "properties":{
+                                    "content":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           },
+           "delete":{
+                "summary":"Delete Comment",
+                "description":"Delete Comments for a specific post",
+                "tags":["Comments"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"id",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           }
+        },
+
+        "/api/likes/{postId}":{
+            "get":{
+                "summary":"Retreive Likes",
+                "description":"Retreive All Likes for a specific ID",
+                "tags":["Likes"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"postId",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           } 
+        },
+        "/api/likes/toggle/{postId}":{
+            "get":{
+                "summary":"Toggle Likes",
+                "description":"Toggle like for a specific post ID",
+                "tags":["Likes"],
+                "security":[{
+                    "JWT":{}
+                }],
+                "parameters":[{
+                    "name":"postId",
+                    "in":"path",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    },
+                    "description": "ID of the post to receive"
+                }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Unauthorized"
+                    }
+                }
+           }
+        },
+
+        "/api/signin":{
+            "post":{
+                "summary":"Login user",
+                "description":"User Login to get token",
+                "tags":["Users"],
+                "requestBody":{
+                    "content":
+                    {
+                        "application/json":{
+                            "schema":
+                            {
+                                "type":"object",
+                                "properties":{
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Invalid Credentials"
+                    }
+                }
+            }
+        },
+        "/api/signup":{
+            "post":{
+                "summary":"Register new user",
+                "description":"Register a new user account",
+                "tags":["Users"],
+                "requestBody":{
+                    "content":
+                    {
+                        "application/json":{
+                            "schema":
+                            {
+                                "type":"object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Invalid Credentials"
+                    }
+                }
+            }
+
+        }
+    }
+
+}
