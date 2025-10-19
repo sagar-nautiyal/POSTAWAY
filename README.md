@@ -59,8 +59,8 @@ Before running this application, make sure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/postaway-ii.git
-   cd postaway-ii
+   git clone https://github.com/your-username/repository-name.git
+   cd repository-name
    ```
 
 2. **Install dependencies**
@@ -73,17 +73,17 @@ Before running this application, make sure you have the following installed:
    Create a `.env` file in the root directory with the following variables:
    ```env
    # Database Configuration
-   DB_URL=mongodb+srv://username:password@cluster.mongodb.net/postaway?retryWrites=true&w=majority
+   DB_URL=your_mongodb_connection_string
 
    # Server Configuration
    PORT=3000
 
-   # JWT Secret Key
-   SECRET_KEY=your_super_secret_jwt_key_here
+   # JWT Secret Key (use a strong, random secret)
+   SECRET_KEY=your_jwt_secret_key
 
    # Email Configuration (for OTP functionality)
-   EMAIL_ADDRESS=your_email@gmail.com
-   APP_PASSWORD=your_app_password_here
+   EMAIL_ADDRESS=your_email@example.com
+   APP_PASSWORD=your_email_app_password
    ```
 
 4. **Start the server**
@@ -257,11 +257,11 @@ The application includes comprehensive logging using Winston:
 ### Environment Variables for Production
 ```env
 NODE_ENV=production
-DB_URL=your_production_mongodb_url
+DB_URL=your_production_mongodb_connection_string
 PORT=3000
-SECRET_KEY=your_production_secret_key
-EMAIL_ADDRESS=your_production_email
-APP_PASSWORD=your_production_app_password
+SECRET_KEY=your_strong_production_jwt_secret
+EMAIL_ADDRESS=your_production_email@domain.com
+APP_PASSWORD=your_production_email_app_password
 ```
 
 ### Recommended Production Setup
@@ -285,9 +285,9 @@ This project is licensed under the ISC License. See the LICENSE file for details
 
 ## 👨‍💻 Author
 
-**Sagar Nautiyal**
-- Email: sagarddn1@gmail.com
-- GitHub: [@sagar-nautiyal](https://github.com/sagar-nautiyal)
+**Your Name**
+- Email: your-email@example.com
+- GitHub: [@your-username](https://github.com/your-username)
 
 ## 🙏 Acknowledgments
 
